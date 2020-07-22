@@ -39,6 +39,7 @@ mvnw.*
 
 ##Ignore CSV data files
 *.csv
+!Workbook2.csv
 
 ##Ignore log files
 *.log
