@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<title>Home Page</title>
+</head>
+<body>
+	<h1>Hello !</h1>
+	<p>
+		Welcome to <span th:text="${appName}">Our App</span>
+	</p>
+	<div th:if="${csvdata.empty}">No Data in CSV</div>
+	<div th:unless="${csvdata.empty}">
+
+		<h1>CSV Data</h1>
+		<table border="1">
+			<!-- <thead>
+			<tr>
+				<th th:text="#{msg.id}" />
+				<th th:text="#{msg.name}" />
+				<th th:text="#{msg.gender}" />
+				<th th:text="#{msg.percent}" />
+				<th th:text="index" />
+				<th th:text="count" />
+				<th th:text="first" />
+				<th th:text="last" />
+			</tr>
+		</thead> -->
+			<tbody>
+				<tr th:each="row : ${csvdata}">
+					<span th:each="cell : ${row}">
+						<td th:text="${cell}"></td>
+					</span>
+				</tr>
+			</tbody>
+		</table>
+		<div th:if="${nextPage != null}">
+			<a th:href="@{/data(page=${nextPage})}">See More</a>
+		</div>
+		<div th:if="${previousPage}">
+			<a th:href="@{/data(page=${previousPage})}">Previous</a>
+		</div>
+	</div>
+</body>
+</html>
