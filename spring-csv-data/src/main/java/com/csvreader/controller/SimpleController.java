@@ -11,26 +11,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.csvreader.Constants;
+import com.csvreader.config.ConfigProperties;
 import com.csvreader.service.ReaderService;
 
 @Controller
 public class SimpleController {
-	@Value("${spring.application.name}")
-	String appName;
-	
-	@Value("${csv.page.limit}")
-	int recordsPerPage;
+	@Autowired
+	ConfigProperties configProperties;
 
 	@Autowired
 	ReaderService readerService;
 
 	@GetMapping("/data")
-	public String homePage(@RequestParam(value = "page", required = false) Integer page,Model model) throws IOException, URISyntaxException {
-		model.addAttribute("appName", appName);
-		List<String[]> data = readerService.readData(page,model);
-		
-		System.out.println("Read data from csv - recordCount : " + (null != data ? data.size() : 0));
-		
-		return "home";
+	public String homePage(@RequestParam(value = "page", required = false) Integer page, Model model)
+			throws IOException, URISyntaxException {
+		model.addAttribute(Constants.APP_NAME_ATTRIBUTE, configProperties.getAppName());
+		readerService.readData(page, model);
+		return Constants.HOME_VIEW;
 	}
 }

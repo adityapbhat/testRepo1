@@ -35,6 +35,7 @@ build/
 ##MVN Wrapper scripts
 mvnw
 mvnw.*
+.mvn/**
 
 ##Ignore CSV data files
 *.csv

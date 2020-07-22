@@ -12,18 +12,6 @@
 
 		<h1>CSV Data</h1>
 		<table border="1">
-			<!-- <thead>
-			<tr>
-				<th th:text="#{msg.id}" />
-				<th th:text="#{msg.name}" />
-				<th th:text="#{msg.gender}" />
-				<th th:text="#{msg.percent}" />
-				<th th:text="index" />
-				<th th:text="count" />
-				<th th:text="first" />
-				<th th:text="last" />
-			</tr>
-		</thead> -->
 			<tbody>
 				<tr th:each="row : ${csvdata}">
 					<span th:each="cell : ${row}">

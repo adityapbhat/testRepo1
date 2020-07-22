@@ -26,8 +26,9 @@ public class SpringCsvIntegrationTest {
 	@Test
 	public void whenGetRecords_thenOK() {
 		final Response response = RestAssured.get(API_ROOT.replace(PORT_LABEL, ""+RestAssured.port));
-		System.out.println(response.body().prettyPrint());
 		Assertions.assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 	}
+	
+	
 
 }
